@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Connected Services\P8ServicesV1\**" />
+    <Content Remove="Connected Services\P8ServicesV1\**" />
+    <EmbeddedResource Remove="Connected Services\P8ServicesV1\**" />
+    <None Remove="Connected Services\P8ServicesV1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Infrastructure\APIGatewayToken.cs" />
+    <Compile Remove="Infrastructure\ClaimsTransformer.cs" />
+    <Compile Remove="Infrastructure\ExceptionHandlerMiddleware.cs" />
+    <Compile Remove="Infrastructure\Interfaces\IP8ServicesV1Proxy.cs" />
+    <Compile Remove="Infrastructure\P8ServicesV1EndpointBehavior.cs" />
+    <Compile Remove="Infrastructure\P8ServicesV1MessageInspector.cs" />
+    <Compile Remove="Infrastructure\P8ServicesV1Options.cs" />
+    <Compile Remove="Infrastructure\P8ServicesV1Proxy.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BLG.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="ClosedXML" Version="0.91.0" />
+    <PackageReference Include="Dapper" Version="1.50.4" />
+    <PackageReference Include="Dapper.SqlBuilder" Version="1.50.4" />
+    <PackageReference Include="FluentValidation" Version="7.4.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="7.4.0" />
+    <PackageReference Include="MediatR" Version="4.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <PackageReference Include="OdeToCode.AddFeatureFolders" Version="1.0.8" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Connected Services\" />
+    <Folder Include="Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>

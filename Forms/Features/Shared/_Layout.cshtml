@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berkley Luxury Group - Forms</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/pikaday/css/pikaday.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        @*<link href="~/css/jquery-ui.css" rel="stylesheet" />*@
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/pikaday/css/pikaday.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+</head>
+<body>
+    <div class="blg-container">
+        <div class="container">
+            <nav class="navbar navbar-light ">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img src="/images/BLGLogo.png" alt="BLG Logo">
+                </a>
+                <h5 class="navbar-text">Forms - Underwriting</h5>
+            </nav>
+        </div>
+        <hr />
+        <div class="container body-content">
+            @RenderBody()
+
+
+        </div>
+    </div>
+    <footer>
+        <p class="text-center">
+            &copy; @DateTime.Now.Year Berkley Luxury Group
+        </p>
+    </footer>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/lodash/dist/lodash.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/lodash/dist/lodash.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

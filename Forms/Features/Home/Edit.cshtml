@@ -1,0 +1,75 @@
+﻿@model Forms.Features.Home.Edit.Command
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="page-header">Forms Detail</h3>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="FormID" type="hidden" />
+            <input asp-for="FileNetDocID" type="hidden" />
+            <input asp-for="RowVersion" type="hidden" />
+
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <div id="validationSummary" class="alert alert-danger d-none"></div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Document:</label>
+                <div class="col-sm-6">
+                    <div class="custom-file">
+                        <input asp-for="Document" type="file" class="custom-file-input" />
+                        <label class="custom-file-label"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Form Number:</label>
+                <div class="col-sm-6">
+                    <input asp-for="FormNumber" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Form Category:</label>
+                <div class="col-sm-8">
+                    <select asp-for="FormCategoryID" asp-items="Model.FormCategories" class="form-control">
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Form Name:</label>
+                <div class="col-sm-6">
+                    <input asp-for="FormName" type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="spacing">
+    <a class="btn btn-success" asp-action="@nameof(Forms.Features.Home.HomeController.Detail)" asp-route-id="@Model.FormID">Back</a>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+    $(function () {
+        $('.custom-file-input').on('change', function () {
+            var fileName = $(this).val().replace(/.*(\/|\\)/, '');
+            $(this).next('.custom-file-label').after().text(fileName);
+        });
+    });
+
+    </script>
+
+}

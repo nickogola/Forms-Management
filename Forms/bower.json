@@ -1,0 +1,17 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "v4.0.0",
+    "jquery": "2.2.0",
+    "jquery-validation": "1.14.0",
+    "jquery-validation-unobtrusive": "3.2.6",
+    "popper.js": "v1.13.0-next",
+    "moment": "2.20.1",
+    "pikaday": "1.6.1",
+    "lodash": "4.17.5"
+  },
+  "resolutions": {
+    "bootstrap": "v4.0.0"
+  }
+}

@@ -1,0 +1,171 @@
+﻿body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+body {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+/* container*/
+.blg-container {
+    position: relative;
+    min-width: 527px;
+    max-width: 1200px;
+    margin: 5px auto;
+    padding: 1em 2em;
+    border: 1px solid #e6e3e3;
+    border-radius: 5px;
+}
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 540px;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #A1915F;
+    border-color: #A1915F;
+}
+.card{
+    margin-bottom: 1em;
+}
+.card-header {
+    background: linear-gradient(#00573d 0%, rgba(15, 103, 77, 0.74) 100%) !important;
+    color: #fff;
+}
+/*.card-header {
+    background: linear-gradient(#A1915F 0%, #d0bf8d 100%) !important;
+    color: #fff;
+}*/
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+.spacing {
+    padding-top: 1em;
+}
+
+/* Accordion Styling */
+.accordion dl,
+.accordion-list {
+    border: 1px solid #ddd;
+}
+
+    .accordion dl:after,
+    .accordion-list:after {
+        content: "";
+        display: block;
+        height: 1em;
+        width: 100%;
+        background-color: #2ba659;
+    }
+
+.accordion dd,
+.accordion__panel {
+    background-color: #eee;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.accordion p {
+    padding: 1em 2em 1em 2em;
+}
+
+.accordion {
+    position: relative;
+    background-color: #eee;
+}
+
+
+.tab-space {
+    padding: 2px;
+}
+
+.table thead th:nth-child(2) {
+    width: 20%;
+} 
+
+.accordionTitle,
+.accordion__Heading {
+    /*background-color: #38cc70;*/
+    /*background-color: #00573d;*/
+    background: linear-gradient(#00573d 0%, rgba(0, 87, 61, 0.74) 100%);
+    text-align: center;
+    font-weight: 700;
+    padding: 0.7em;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    -webkit-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+    font-size: 1.1em;
+}
+
+    .accordionTitle:before,
+    .accordion__Heading:before {
+        content: "►"; /*"+";*/
+        font-size: 1.5em;
+        line-height: 0.5em;
+        float: left;
+        -webkit-transition: -webkit-transform 0.3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .accordionTitle:hover,
+    .accordion__Heading:hover {
+        background-color: #2ba659;
+        /*background-color: #38cc70;*/
+    }
+
+    .accordionTitleActive,
+    .accordionTitle.is-expanded {
+        background-color: #2ba659;
+    }
+
+        .accordionTitleActive:before,
+        .accordionTitle.is-expanded:before {
+            -webkit-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+
+/*.accordionTitle.is-expanded:before {
+  -webkit-transform: rotate(-225deg);
+      -ms-transform: rotate(-225deg);
+          transform: rotate(-225deg);
+}*/
+
+.accordionItem {
+    height: auto;
+    overflow: hidden;
+    max-height: 50em;
+    -webkit-transition: max-height 1s;
+    transition: max-height 1s;
+}
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

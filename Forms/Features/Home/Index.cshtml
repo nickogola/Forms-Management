@@ -1,0 +1,227 @@
+﻿@model Forms.Features.Home.Index.Model
+
+<form asp-action="Index" method="get">
+    <div class="form-group row">
+        @*<div class="col-sm-4">
+            <label asp-for="CompanyID">Company:</label>
+            <select asp-for="CompanyID" asp-items="Model.Companies" class="form-control filter">
+                <option value="">All</option>
+            </select>
+        </div>*@
+        <div class="col-sm-4">
+            <label asp-for="StateProgramID">State / Program:</label>
+            <select asp-for="StateProgramID" asp-items="Model.StatePrograms" class="form-control filter">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label asp-for="LineOfBusinessID">Line of Business:</label>
+            <select asp-for="LineOfBusinessID" asp-items="Model.LinesOfBusiness" class="form-control filter">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <label asp-for="ActiveRulesOnly">Rules:</label>
+            <select asp-for="ActiveRulesOnly" class="form-control filter">
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+      
+        <div class="col-sm-6">
+            <label asp-for="FormNumber">Form Number:</label>
+            <input type="text" asp-for="FormNumber" class="form-control filter">
+            
+        </div>
+        <div class="col-sm-6">
+            <label asp-for="FormName">Form Name:</label>
+            <input type="text" asp-for="FormName" class="form-control filter">
+        </div>
+       
+    </div>
+    <div class="form-group row">
+        <div class="col-md-6 offset-md-6">
+            <div class="text-right">
+                <a asp-action="Export">
+                    <img src="~/images/excel.jpg" />
+                </a>
+                <a asp-action="Create" class="btn btn-success">Add Form</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (Model.Forms.Count > 0)
+{
+<div class="row">
+
+    <div class="col-sm-12" id="dvPanels">
+        <div class="panel-group ng-scope" id="accordions">
+            <div class="panel panel-default" style="display: block;">
+                @*  *@
+                <h5 id="accordClick2" class="accordion-header ui-accordion-header ui-helper-reset ui-accordion-icons ui-corner-all accordionTitle js-accordionTrigger scroll">
+                    <span style="color: #fff" id="lgeninfo2" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+                        <b>Policy Forms and Declarations <span data-brackets-id="108" class="badge badge-success">@Model.Forms.Where(f => f.FormCategoryID == 2).ToList().Count</span> </b>
+                    </span>
+                </h5>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                    <div style="padding: 1em; position: relative; clear: both;">
+                        <table class="table table-striped table-bordered dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Form Name</th>
+                                    <th>Form Number</th>
+                                    <th>State / Program</th>
+                                    <th>Doc</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Forms)
+                    {
+                        if (item.FormCategoryID == 2)
+                        {
+                            <tr>
+                                <td>@item.FormName</td>
+                                <td>
+                                    <a asp-action="Detail" asp-route-id="@item.FormID">@item.FormNumber</a>
+                                </td>
+                                <td>@item.DisplayStateProgram</td>
+                                @* <td>@item.LineOfBusinessName</td>*@
+                                <td>
+                                    <a asp-action="GetPDF" asp-route-id="@item.FormID" asp-route-filename="@item.FormNumber" target="_blank">
+                                        <img src="~/images/pdf-icon.png" style="width: 28px;" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@item.FormID">
+                                        <img src="~/images/del-btn.png" class="center-block img-responsive" />
+                                    </a>
+                                </td>
+                            </tr>
+            }
+        }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-space"></div>
+                <h5 id="accordClick2" class="accordion-header ui-accordion-header ui-helper-reset ui-accordion-icons ui-corner-all accordionTitle js-accordionTrigger scroll">
+                    <span style="color: #fff" id="lgeninfo2" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+                        <b>Endorsements <span data-brackets-id="108" class="badge badge-success">@Model.Forms.Where(f => f.FormCategoryID == 3).ToList().Count</span> </b>
+                    </span>
+                </h5>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                    <div style="padding: 1em; position: relative; clear: both;">
+                        <table class="table table-striped table-bordered dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Form Name</th>
+                                    <th>Form Number</th>
+                                    <th>State / Program</th>
+                                    <th>Doc</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.Forms)
+                    {
+                        if (item.FormCategoryID == 3)
+                        {
+                            <tr>
+                                @* <td>@count</td>*@
+                                <td>@item.FormName</td>
+                                <td>
+                                    <a asp-action="Detail" asp-route-id="@item.FormID">@item.FormNumber</a>
+                                </td>
+                                <td>@item.DisplayStateProgram</td>
+                                @* <td>@item.LineOfBusinessName</td>*@
+                                <td>
+                                    <a asp-action="GetPDF" asp-route-id="@item.FormID" asp-route-filename="@item.FormNumber" target="_blank">
+                                        <img src="~/images/pdf-icon.png" style="width: 28px;" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@item.FormID">
+                                        <img src="~/images/del-btn.png" class="center-block img-responsive" />
+                                    </a>
+                                </td>
+                            </tr>
+            }
+        }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-space"></div>
+                <h5 id="accordClick2" class="accordion-header ui-accordion-header ui-helper-reset ui-accordion-icons ui-corner-all accordionTitle js-accordionTrigger scroll">
+                    <span style="color: #fff" id="lgeninfo2" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+                        <b>Administrative Forms, Applications & Schedules <span data-brackets-id="108" class="badge badge-success">@Model.Forms.Where(f => f.FormCategoryID == 1).ToList().Count</span> </b>
+                    </span>
+                </h5>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+                    <div style="padding: 1em; position: relative; clear: both;">
+                        <table class="table table-striped table-bordered dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Form Name</th>
+                                    <th>Form Number</th>
+                                    <th>State / Program</th>
+                                    <th>Doc</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.Forms)
+                    {
+                        if (item.FormCategoryID == 1)
+                        {
+                            <tr>
+                                @* <td>@count</td>*@
+                                <td>@item.FormName</td>
+                                <td>
+                                    <a asp-action="Detail" asp-route-id="@item.FormID">@item.FormNumber</a>
+                                </td>
+                                <td>@item.DisplayStateProgram</td>
+                                @* <td>@item.LineOfBusinessName</td>*@
+                                <td>
+                                    <a asp-action="GetPDF" asp-route-id="@item.FormID" asp-route-filename="@item.FormNumber" target="_blank">
+                                        <img src="~/images/pdf-icon.png" style="width: 28px;" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="Delete" asp-route-id="@item.FormID">
+                                        <img src="~/images/del-btn.png" class="center-block img-responsive" />
+                                    </a>
+                                </td>
+                            </tr>
+            }
+        }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-space"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $(".filter").change(function () {
+                this.form.submit();
+            });
+        });
+
+    </script>
+}

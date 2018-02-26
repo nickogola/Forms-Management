@@ -1,0 +1,84 @@
+﻿@model Forms.Features.Home.Detail.Model
+@{
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="float-left">Exception Page Detail</h4>
+        <a asp-action="Edit" asp-route-id="@Model.FormID" class="btn btn-secondary float-right">Edit</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Document:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormDocumentPath</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Company:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormNumber</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Title:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormCategoryID</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Line of Business:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormName</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card spacing">
+    <div class="card-header">
+        <h4 class="float-left">State / Programs</h4>
+        <a asp-action="CreateStateProgram" asp-route-id="@Model.FormID" class="btn btn-secondary float-right">Create State Program</a>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>State / Program</th>
+                    <th>Effective Date</th>
+                    <th>Expiration Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.StatePrograms)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="EditStateProgram" asp-route-id="@item.FormID">@item.StateCode-@item.ProgramCode</a>S
+                        </td>
+                        <td>@string.Format("{0:MM/dd/yyyy}", item.EffectiveDate)</td>
+                        <td>@string.Format("{0:MM/dd/yyyy}", item.ExpirationDate)</td>
+                        <td>
+                            <div class="text-center">
+                                <a asp-action="DeleteStateProgram" asp-route-id="@item.FormID">
+                                    <img src="~/images/del-btn.png" class="img-responsive" />
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-secondary" asp-action="@nameof(Forms.Features.Home.HomeController.Index)">Back to Home</a>
+</div>S

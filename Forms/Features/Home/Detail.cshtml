@@ -1,0 +1,89 @@
+﻿@model Forms.Features.Home.Detail.Model
+@{
+
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="float-left">Form Detail</h4>
+        <a asp-action="Edit" asp-route-id="@Model.FormID" class="btn btn-success float-right">Edit</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Document:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">
+                        <a asp-action="GetPDF" asp-route-id="@Model.FormID" asp-route-filename="@Model.FormNumber" target="_blank">
+                            <img src="~/images/pdf-icon.png" style="width: 28px;" /> View Document
+                        </a>
+                        @*<a href="Javascript:window.open('http://forms.berkleyluxurygroup.com/@Model.FormDocumentPath','name','height=933,width=900');"><img src="~/images/pdf-icon.png" />View Document</a>*@
+                    </p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Form Number:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormNumber</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Form Name:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormName</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-2">Form Category:</label>
+                <div class="col-sm-4">
+                    <p class="form-control-plaintext">@Model.FormCategoryID</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="float-left">State / Programs</h4>
+        <a asp-action="CreateStateProgram" asp-route-id="@Model.FormID" class="btn btn-success float-right">Create State Program</a>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>State / Program</th>
+                    <th>Effective Date</th>
+                    <th>Expiration Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.StatePrograms)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="EditStateProgram" asp-route-id="@item.FormID" asp-route-stateprogramid="@item.StateProgramID">@item.StateCode-@item.ProgramCode</a>
+                        </td>
+                        <td>@string.Format("{0:MM/dd/yyyy}", item.EffectiveDate)</td>
+                        <td>@string.Format("{0:MM/dd/yyyy}", item.ExpirationDate)</td>
+                        <td>
+                            <div class="text-center">
+                                <a asp-action="DeleteStateProgram" asp-route-id="@item.FormID" asp-route-stateprogramid="@item.StateProgramID">
+                                    <img src="~/images/del-btn.png" class="img-responsive" />
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="padding-top: 1em;">
+    <a class="btn btn-success" asp-action="@nameof(Forms.Features.Home.HomeController.Index)">Back to Home</a>
+</div>
